@@ -16,12 +16,11 @@
 
 The code repository for "[Dual Consolidation for Pre-Trained Model-Based Domain-Incremental Learning](https://arxiv.org/abs/2410.00911)" (CVPR 2025) in PyTorch.  If you use any content of this repo for your work, please cite the following bib entry: 
 
-    @article{zhou2024duct,
-        title={Dual Consolidation for Pre-Trained Model-Based Domain-Incremental Learning}, 
-        author={Da-Wei Zhou and Zi-Wen Cai and Han-Jia Ye and Lijun Zhang and De-Chuan Zhan},
-        journal = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-        year = {2025},
-        url={https://arxiv.org/abs/2410.00911}, 
+    @inproceedings{zhou2025duct,
+      title={Dual Consolidation for Pre-Trained Model-Based Domain-Incremental Learning},
+      author={Da-Wei Zhou and Zi-Wen Cai and Han-Jia Ye and Lijun Zhang and De-Chuan Zhan},
+      booktitle={CVPR},
+      year={2025},
     }
 
 
