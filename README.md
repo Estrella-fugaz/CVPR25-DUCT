@@ -14,7 +14,16 @@ School of Artificial Intelligence, State Key Laboratory for Novel Software Techn
 </div>
 </div>
 
-\
+<div align="center">
+
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=Estrella-fugaz.CVPR25-DUCT&left_color=yellow&right_color=purple)
+  <a href="https://arxiv.org/abs/2410.00911">
+    <img src="https://img.shields.io/badge/CVPR2025-red" alt="arXiv">
+  </a>
+
+</div>
+
+
 The code repository for "[Dual Consolidation for Pre-Trained Model-Based Domain-Incremental Learning](https://arxiv.org/abs/2410.00911)" (CVPR 2025) in PyTorch.  If you use any content of this repo for your work, please cite the following bib entry: 
 
     @inproceedings{zhou2025duct,
@@ -119,8 +128,3 @@ This repo is based on [S-Prompts](https://github.com/iamwangyabin/S-Prompts) and
 If you have any questions, please contact me via [email](mailto:zhoudw@lamda.nju.edu.cn) or open an [issue](https://github.com/Estrella-fugaz/CVPR25-DUCT/issues/new).
 
 
-<div align="center">
-
-![visitors](https://visitor-badge.laobi.icu/badge?page_id=Estrella-fugaz.CVPR25-DUCT&left_color=green&right_color=red)
-
-</div>
