@@ -1,0 +1,34 @@
+{
+    "prefix": "Reproduce",
+    "dataset": "domainnet",
+    "task_name": ["clipart", "infograph", "painting", "quickdraw", "real", "sketch"],
+    "data_path": "$Your/Data/Path/Here$",
+
+    "memory_size": 0,
+    "memory_per_class": 0,
+    "fixed_memory": true,
+    "shuffle": false,
+    "init_cls": 345,
+    "increment": 345,
+    "total_sessions" : 6,
+
+    "model_name": "duct",
+    "net_type": "vit",
+
+    "merge_scalar": 0.25,
+    "head_merge_ratio": 0.25,
+    "lr_re": 1e-3,
+    "epc_re": 5,
+    "embd_dim" : 768,
+    "bcb_lr_scale": 0.01,
+    "epochs" : 15,
+    "lrate" : 0.1,
+    "milestones": [60, 100, 140],
+    "seed": [1993],
+    "EPSILON" : 1e-8,
+    "ot_reg": 0.01,
+    "lrate_decay" : 0.1,
+    "weight_decay" : 5e-4,
+    "batch_size" : 128,
+    "num_workers" : 16
+}
