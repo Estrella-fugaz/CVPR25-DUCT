@@ -3,24 +3,25 @@
 <div align="center">
 
 <div>
-    <a href='http://www.lamda.nju.edu.cn/zhoudw' target='_blank'>Da-Wei Zhou</a><sup>1</sup>&emsp;
-    <a href='http://www.lamda.nju.edu.cn/caizw' target='_blank'>Zi-Wen Cai</a><sup>1</sup>&emsp;
-    <a href='http://www.lamda.nju.edu.cn/yehj' target='_blank'>Han-Jia Ye</a><sup>1</sup>&emsp;
-    <a href='https://liuziwei7.github.io/' target='_blank'>Lijun Zhang </a><sup>1</sup>&emsp;
-    <a href='http://www.lamda.nju.edu.cn/zhandc' target='_blank'>De-Chuan Zhan</a><sup>1</sup>
+    <a href='http://www.lamda.nju.edu.cn/zhoudw' target='_blank'>Da-Wei Zhou</a>&emsp;
+    <a href='http://www.lamda.nju.edu.cn/caizw' target='_blank'>Zi-Wen Cai</a>&emsp;
+    <a href='http://www.lamda.nju.edu.cn/yehj' target='_blank'>Han-Jia Ye</a>&emsp;
+    <a href='https://ai.nju.edu.cn/zlj/' target='_blank'>Lijun Zhang </a>&emsp;
+    <a href='http://www.lamda.nju.edu.cn/zhandc' target='_blank'>De-Chuan Zhan</a>
 </div>
 <div>
-<sup>1</sup>School of Artificial Intelligence, State Key Laboratory for Novel Software Technology, Nanjing University&emsp;
+School of Artificial Intelligence, State Key Laboratory for Novel Software Technology, Nanjing University&emsp;
 </div>
 </div>
 
+\
 The code repository for "[Dual Consolidation for Pre-Trained Model-Based Domain-Incremental Learning](https://arxiv.org/abs/2410.00911)" (CVPR 2025) in PyTorch.  If you use any content of this repo for your work, please cite the following bib entry: 
 
     @inproceedings{zhou2025duct,
-      title={Dual Consolidation for Pre-Trained Model-Based Domain-Incremental Learning},
-      author={Da-Wei Zhou and Zi-Wen Cai and Han-Jia Ye and Lijun Zhang and De-Chuan Zhan},
-      booktitle={CVPR},
-      year={2025},
+        title={Dual Consolidation for Pre-Trained Model-Based Domain-Incremental Learning},
+        author={Da-Wei Zhou and Zi-Wen Cai and Han-Jia Ye and Lijun Zhang and De-Chuan Zhan},
+        booktitle={CVPR},
+        year={2025},
     }
 
 
@@ -38,7 +39,6 @@ By merging the backbone of different stages, we create a representation space su
 <div align="center">
 <img src="imgs/DUCT.png" width="95%">
 
-<h3>TL;DR</h3>
 </div>
 
 
@@ -101,6 +101,15 @@ There are **4** datasets involved in the paper, CDDB, CORe50, DomainNet and Offi
 ```
 python main.py --config configs/Template_domainnet_duct.json
 ```
+
+## Performance
+
+The main results have been listed below.
+
+<div align="center">
+<img src="imgs/perf.png" width="95%">
+
+</div>
 
 
 ## Acknowledge 
