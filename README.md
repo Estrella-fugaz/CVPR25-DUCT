@@ -35,7 +35,11 @@ The code repository for "[Dual Consolidation for Pre-Trained Model-Based Domain-
 
 
 ## Updates
+[02/2025] Code has been released.
+
 [02/2025] Accepted to CVPR 2025.
+
+[10/2024] arXiv paper has been released.
 
 
 ## Introduction
