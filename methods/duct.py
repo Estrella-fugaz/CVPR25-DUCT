@@ -27,7 +27,6 @@ class DUCT(BaseLearner):
         self.train_loader = None
         self.task_cl_inc = self.args['increment']
 
-        self.model_prefix = args['prefix']
         self.epochs = args['epochs']
         self.lrate = args['lrate']
         self.lrate_decay = args['lrate_decay']
@@ -52,20 +51,11 @@ class DUCT(BaseLearner):
         self._total_classes = self._known_classes + data_manager.get_task_size(self._cur_task)
         logging.info("Learning on {}-{}".format(self._known_classes, self._total_classes))
 
-        if self.args.get('cls_fixed', False) and self.args['cls_fixed'] and self._cur_task:
-            logging.info('========= NO classifier expansion. ========')
-        else:
-            self._network.update_fc(self._total_classes)
+        self._network.update_fc(self._total_classes)
         self._network.to(self._device)
 
         self._network.load_state_dict(self.model_init_state, strict=False)
         self._compute_class_mean(data_manager)
-
-        if self.args.get('continual_merge', False) and self.args['continual_merge']:
-            logging.info('Continual merge: True')
-            self._network.load_state_dict(
-                vector_to_state_dict(self.model_init_vector, self._network.state_dict(),
-                                     remove_keys=self.remove_keys), strict=False)
 
         train_dataset = data_manager.get_dataset(np.arange(self._known_classes, self._total_classes),
                                                  source="train", mode="train")
@@ -76,7 +66,7 @@ class DUCT(BaseLearner):
                                       num_workers=self.num_workers)
 
         self._train(self.train_loader, self.test_loader, mode='train')
-        self._stage1_merge_backbone()
+        self._stage1_merge_backbone(data_manager)
         self._train(self.train_loader, self.test_loader, mode='retrain')
         self._stage2_transport_classifier()
 
@@ -111,7 +101,8 @@ class DUCT(BaseLearner):
                 logging.info('Initial epochs: {}'.format(epochs))
 
         optimizer = optim.SGD(network_params, lr=lrate, momentum=0.9, weight_decay=self.weight_decay)
-        scheduler = optim.lr_scheduler.ConstantLR(optimizer=optimizer)
+        # scheduler = optim.lr_scheduler.ConstantLR(optimizer=optimizer)
+        scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=self.args['milestones'], gamma=0.1)
 
         if len(self._multiple_gpus) > 1:
             self._network = nn.DataParallel(self._network, self._multiple_gpus)
@@ -143,12 +134,10 @@ class DUCT(BaseLearner):
                 test_acc = self._compute_accuracy_domain(self._network, test_loader)
                 info = 'Task {}, Epoch {}/{} => Loss {:.3f}, Train_accy {:.3f}, Test_accy {:.3f}'.format(
                     self._cur_task, epoch, epochs, losses / len(train_loader), train_acc, test_acc)
-                logging.info({'Train acc': train_acc, 'Test acc': test_acc})
             else:
                 info = 'Task {}, Epoch {}/{} => Loss {:.3f}'.format(
                     self._cur_task, epoch, epochs, losses / len(train_loader))
             logging.info(info)
-            logging.info({'Train loss': losses / len(train_loader)})
 
         if mode == 'retrain':
             test_acc = self._compute_accuracy_domain(self._network, self.test_loader)
@@ -158,7 +147,8 @@ class DUCT(BaseLearner):
             self._network = self._network.module
 
     @torch.no_grad()
-    def _stage1_merge_backbone(self):
+    def _stage1_merge_backbone(self, data_manager):
+
         vector_model_updated = state_dict_to_vector(self._network.state_dict(), remove_keys=self.remove_keys)
         vector_model_updated = vector_model_updated.to(self._device)
         vector_model_inc = (vector_model_updated - self.model_init_vector).detach()
@@ -166,9 +156,11 @@ class DUCT(BaseLearner):
         merge_scalar = 0.99
         if self.args.get('merge_scalar', False):
             merge_scalar = self.args['merge_scalar']
-        logging.info('Merge scalar: {}'.format(merge_scalar))
 
-        self.model_merged_vector += vector_model_inc.cpu().squeeze() * merge_scalar
+        cl_means_updated = self._cal_means_cur(data_manager)
+        re_scalar = self._calculate_adjust_ratio(cl_means_updated)
+
+        self.model_merged_vector += vector_model_inc.cpu().squeeze() * merge_scalar * re_scalar
 
         if self.args.get('continual_merge', False) and self.args['continual_merge']:
             self.model_init_vector = vector_model_inc.squeeze() * merge_scalar + self.model_init_vector
@@ -186,15 +178,12 @@ class DUCT(BaseLearner):
                                      self._network.state_dict(),
                                      remove_keys=self.remove_keys), strict=False)
 
-        test_acc = self._compute_accuracy_domain(self._network, self.test_loader)
+        test_acc = self._compute_accuracy(self._network, self.test_loader)
         logging.info('Test accuracy of model after backbone merge: {}'.format(test_acc))
+
 
     @torch.no_grad()
     def _stage2_transport_classifier(self):
-        def _compute_cosine_similarity(x, y):
-            # return x @ y.to(torch.float64) / (torch.norm(x) * torch.norm(y))
-            return F.linear(F.normalize(x, p=2, dim=0), F.normalize(y.to(torch.float64), p=2, dim=0))
-
         def _get_task_range(task_id):
             task_start = task_id * self.task_cl_inc
             task_end = (task_id + 1) * self.task_cl_inc
@@ -222,30 +211,19 @@ class DUCT(BaseLearner):
 
             old_head_weight_transported = torch.matmul(T_matrix.T, cur_head_weight.to(torch.double)).to(torch.float32)
             ot_cost = np.multiply(T_matrix.cpu().numpy(), cost_matrix.cpu().numpy())
-            print("ot_cost shape:", ot_cost.shape)
             ot_cost = ot_cost.sum()
-            logging.info('The OT cost: {:.5f}'.format(ot_cost))
-
             merge_ratio = self.args['head_merge_ratio'] if self.args.get('head_merge_ratio', False) else 0.5
-            logging.info('Head merge ratio: {}'.format(merge_ratio))
 
             old_head_weight_updated = (1 - merge_ratio) * old_head_weight + merge_ratio * old_head_weight_transported
-
             self._network.fc.weight[old_range_start:old_range_end] = old_head_weight_updated
-
-            weight_updated_distance = torch.norm(old_head_weight_updated - old_head_weight)
-            logging.info(
-                'Distance between old head weight and updated head weight: {:.10f}'.format(weight_updated_distance))
+            self._network.fc.weight[old_range_start:old_range_end] = old_head_weight_updated
 
         test_acc = self._compute_accuracy_domain(self._network, self.test_loader)
         logging.info('Test accuracy of model after classifier transport: {}'.format(test_acc))
 
-    def _calculate_means_all(self, data_manager, model, file_prefix: str):
-        if not self._cur_task:
-            return
-        logging.info('Calculating class means for all classes till now ...')
+    def _cal_means_cur(self, data_manager):
         class_means = []
-        for class_id in range(self._total_classes):
+        for class_id in range(self._known_classes, self._total_classes):
             class_data = data_manager.get_dataset([class_id], source='train', mode='train')
             class_loader = DataLoader(class_data, batch_size=self.batch_size, shuffle=False,
                                       num_workers=self.num_workers)
@@ -254,9 +232,20 @@ class DUCT(BaseLearner):
             class_means.append(class_mean)
 
         class_means = np.array(class_means)
-        print('Class means shape:', class_means.shape)
 
-        logging_filename = logging.root.handlers[0].baseFilename[:-4]
-        file_path = logging_filename + '_class_means_{}_task-{}.pth'.format(file_prefix, str(self._cur_task))
-        logging.info('Writing the class means to {}'.format(file_path))
-        torch.save(class_means, file_path)
+        return class_means
+
+    def _calculate_adjust_ratio(self, cur_cl_means_updated):
+        """
+        Calculate the average cosine similarity between `cur_cl_means` and `cur_cl_means_updated`.
+        """
+        cur_cl_means = self._class_means[self._known_classes:self._total_classes]
+
+        cos_sim = nn.CosineSimilarity(dim=0)
+        cos_sim_list = []
+        for i in range(len(cur_cl_means)):
+            cos_sim_list.append(cos_sim(torch.tensor(cur_cl_means[i]), torch.tensor(cur_cl_means_updated[i])))
+
+        avg_sim = np.mean(cos_sim_list)
+
+        return avg_sim
