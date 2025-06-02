@@ -178,7 +178,7 @@ class DUCT(BaseLearner):
                                      self._network.state_dict(),
                                      remove_keys=self.remove_keys), strict=False)
 
-        test_acc = self._compute_accuracy(self._network, self.test_loader)
+        test_acc = self._compute_accuracy_domain(self._network, self.test_loader)
         logging.info('Test accuracy of model after backbone merge: {}'.format(test_acc))
 
 
@@ -215,7 +215,6 @@ class DUCT(BaseLearner):
             merge_ratio = self.args['head_merge_ratio'] if self.args.get('head_merge_ratio', False) else 0.5
 
             old_head_weight_updated = (1 - merge_ratio) * old_head_weight + merge_ratio * old_head_weight_transported
-            self._network.fc.weight[old_range_start:old_range_end] = old_head_weight_updated
             self._network.fc.weight[old_range_start:old_range_end] = old_head_weight_updated
 
         test_acc = self._compute_accuracy_domain(self._network, self.test_loader)
