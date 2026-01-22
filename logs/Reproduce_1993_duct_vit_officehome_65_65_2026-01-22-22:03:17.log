@@ -1,0 +1,221 @@
+2026-01-22 22:03:17,934 [trainer.py] => config: configs/Template_officehome_duct.json
+2026-01-22 22:03:17,935 [trainer.py] => prefix: Reproduce
+2026-01-22 22:03:17,935 [trainer.py] => dataset: officehome
+2026-01-22 22:03:17,935 [trainer.py] => task_name: ['Product', 'Clipart', 'Real_World', 'Art']
+2026-01-22 22:03:17,935 [trainer.py] => data_path: /root/autodl-tmp/DATASETS/OfficeHome
+2026-01-22 22:03:17,935 [trainer.py] => device: [device(type='cuda', index=0)]
+2026-01-22 22:03:17,935 [trainer.py] => re_scalar: 1.0
+2026-01-22 22:03:17,935 [trainer.py] => memory_size: 0
+2026-01-22 22:03:17,935 [trainer.py] => memory_per_class: 0
+2026-01-22 22:03:17,935 [trainer.py] => fixed_memory: True
+2026-01-22 22:03:17,935 [trainer.py] => shuffle: False
+2026-01-22 22:03:17,935 [trainer.py] => init_cls: 65
+2026-01-22 22:03:17,935 [trainer.py] => increment: 65
+2026-01-22 22:03:17,935 [trainer.py] => total_sessions: 4
+2026-01-22 22:03:17,935 [trainer.py] => model_name: duct
+2026-01-22 22:03:17,935 [trainer.py] => net_type: vit
+2026-01-22 22:03:17,975 [trainer.py] => embd_dim: 768
+2026-01-22 22:03:17,975 [trainer.py] => seed: 1993
+2026-01-22 22:03:17,976 [trainer.py] => EPSILON: 1e-08
+2026-01-22 22:03:17,976 [trainer.py] => merge_scalar: 0.25
+2026-01-22 22:03:17,976 [trainer.py] => head_merge_ratio: 0.25
+2026-01-22 22:03:17,976 [trainer.py] => ot_reg: 0.1
+2026-01-22 22:03:17,976 [trainer.py] => lr_re: 0.001
+2026-01-22 22:03:17,976 [trainer.py] => epc_re: 5
+2026-01-22 22:03:17,976 [trainer.py] => bcb_lr_scale: 0.01
+2026-01-22 22:03:17,976 [trainer.py] => ca_epochs: 5
+2026-01-22 22:03:17,976 [trainer.py] => epochs: 15
+2026-01-22 22:03:17,976 [trainer.py] => lrate: 0.1
+2026-01-22 22:03:17,976 [trainer.py] => milestones: [60, 100, 140]
+2026-01-22 22:03:17,976 [trainer.py] => lrate_decay: 0.1
+2026-01-22 22:03:17,976 [trainer.py] => weight_decay: 0.0005
+2026-01-22 22:03:17,976 [trainer.py] => batch_size: 128
+2026-01-22 22:03:17,976 [trainer.py] => num_workers: 16
+2026-01-22 22:03:17,976 [trainer.py] => logfilename: logs/Reproduce_1993_duct_vit_officehome_65_65_2026-01-22-22:03:17
+2026-01-22 22:03:17,976 [data.py] => Learning sequence of domains: ['Product', 'Clipart', 'Real_World', 'Art']
+2026-01-22 22:03:18,027 [data_manager.py] => class order: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259]
+2026-01-22 22:03:18,194 [vit_inc.py] => You are now using `vit_base_patch16_224` as backbone.
+2026-01-22 22:03:22,401 [_builder.py] => Loading pretrained weights from url (https://storage.googleapis.com/vit_models/augreg/B_16-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.01-res_224.npz)
+2026-01-22 22:03:28,197 [trainer.py] => All params: 91326184
+2026-01-22 22:03:28,198 [trainer.py] => Trainable params: 91326184
+2026-01-22 22:03:28,198 [duct.py] => Learning on 0-65
+2026-01-22 22:05:55,606 [duct.py] => Initial epochs: 15
+2026-01-22 22:06:16,176 [duct.py] => Task 0, Epoch 1/15 => Loss 4.055
+2026-01-22 22:06:36,603 [duct.py] => Task 0, Epoch 2/15 => Loss 2.206
+2026-01-22 22:06:56,597 [duct.py] => Task 0, Epoch 3/15 => Loss 0.508
+2026-01-22 22:07:17,191 [duct.py] => Task 0, Epoch 4/15 => Loss 0.333
+2026-01-22 22:07:50,015 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:08:00,093 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:08:00,094 [duct.py] => Task 0, Epoch 5/15 => Loss 0.279, Train_accy 94.690, Test_accy 93.990
+2026-01-22 22:08:19,987 [duct.py] => Task 0, Epoch 6/15 => Loss 0.245
+2026-01-22 22:08:39,982 [duct.py] => Task 0, Epoch 7/15 => Loss 0.224
+2026-01-22 22:09:00,781 [duct.py] => Task 0, Epoch 8/15 => Loss 0.208
+2026-01-22 22:09:21,105 [duct.py] => Task 0, Epoch 9/15 => Loss 0.185
+2026-01-22 22:09:53,893 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:10:03,286 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:10:03,287 [duct.py] => Task 0, Epoch 10/15 => Loss 0.155, Train_accy 95.980, Test_accy 94.970
+2026-01-22 22:10:22,892 [duct.py] => Task 0, Epoch 11/15 => Loss 0.164
+2026-01-22 22:10:42,705 [duct.py] => Task 0, Epoch 12/15 => Loss 0.164
+2026-01-22 22:11:03,175 [duct.py] => Task 0, Epoch 13/15 => Loss 0.147
+2026-01-22 22:11:22,600 [duct.py] => Task 0, Epoch 14/15 => Loss 0.143
+2026-01-22 22:11:55,798 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:12:05,012 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:12:05,013 [duct.py] => Task 0, Epoch 15/15 => Loss 0.143, Train_accy 96.620, Test_accy 95.050
+2026-01-22 22:18:03,021 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:18:03,022 [duct.py] => Test accuracy of model after backbone merge: 91.74
+2026-01-22 22:18:22,418 [duct.py] => Task 0, Epoch 1/5 => Loss 0.404
+2026-01-22 22:18:43,301 [duct.py] => Task 0, Epoch 2/5 => Loss 0.356
+2026-01-22 22:19:04,095 [duct.py] => Task 0, Epoch 3/5 => Loss 0.329
+2026-01-22 22:19:24,488 [duct.py] => Task 0, Epoch 4/5 => Loss 0.303
+2026-01-22 22:19:59,617 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:20:09,318 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:20:09,318 [duct.py] => Task 0, Epoch 5/5 => Loss 0.315, Train_accy 93.850, Test_accy 92.490
+2026-01-22 22:20:19,422 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:20:19,423 [duct.py] => Test accuracy of model after retraining: 92.49
+2026-01-22 22:20:39,808 [trainer.py] => DUCT_VIT: {'total': 92.49, '00-64': 92.49, 'old': 0, 'new': 92.49}
+2026-01-22 22:20:39,808 [trainer.py] => NME: {'total': 1.2, '00-64': 1.2, 'old': 0, 'new': 1.2}
+2026-01-22 22:20:39,808 [trainer.py] => DUCT_VIT top1 curve: [92.49]
+2026-01-22 22:20:39,808 [trainer.py] => NME top1 curve: [1.2]
+2026-01-22 22:20:39,809 [trainer.py] => Average NME top1: 1.2
+2026-01-22 22:20:39,809 [trainer.py] => Average top1: 92.49
+2026-01-22 22:20:39,810 [trainer.py] => All params: 91376105
+2026-01-22 22:20:39,810 [trainer.py] => Trainable params: 91376105
+2026-01-22 22:20:39,811 [duct.py] => Learning on 65-130
+2026-01-22 22:23:43,513 [duct.py] => Task 1, Epoch 1/15 => Loss 4.127
+2026-01-22 22:24:05,192 [duct.py] => Task 1, Epoch 2/15 => Loss 3.613
+2026-01-22 22:24:26,902 [duct.py] => Task 1, Epoch 3/15 => Loss 1.990
+2026-01-22 22:24:48,400 [duct.py] => Task 1, Epoch 4/15 => Loss 1.142
+2026-01-22 22:25:25,289 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:25:40,601 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:25:40,602 [duct.py] => Task 1, Epoch 5/15 => Loss 0.914, Train_accy 80.000, Test_accy 83.270
+2026-01-22 22:26:02,608 [duct.py] => Task 1, Epoch 6/15 => Loss 0.816
+2026-01-22 22:26:23,914 [duct.py] => Task 1, Epoch 7/15 => Loss 0.752
+2026-01-22 22:26:45,684 [duct.py] => Task 1, Epoch 8/15 => Loss 0.674
+2026-01-22 22:27:06,918 [duct.py] => Task 1, Epoch 9/15 => Loss 0.643
+2026-01-22 22:27:44,720 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:27:59,800 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:27:59,801 [duct.py] => Task 1, Epoch 10/15 => Loss 0.599, Train_accy 85.960, Test_accy 85.840
+2026-01-22 22:28:21,797 [duct.py] => Task 1, Epoch 11/15 => Loss 0.522
+2026-01-22 22:28:43,291 [duct.py] => Task 1, Epoch 12/15 => Loss 0.496
+2026-01-22 22:29:05,095 [duct.py] => Task 1, Epoch 13/15 => Loss 0.462
+2026-01-22 22:29:26,895 [duct.py] => Task 1, Epoch 14/15 => Loss 0.444
+2026-01-22 22:30:05,213 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:30:18,608 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:30:18,609 [duct.py] => Task 1, Epoch 15/15 => Loss 0.427, Train_accy 88.770, Test_accy 86.300
+2026-01-22 22:38:30,310 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:38:30,311 [duct.py] => Test accuracy of model after backbone merge: 82.1
+2026-01-22 22:38:52,308 [duct.py] => Task 1, Epoch 1/5 => Loss 0.920
+2026-01-22 22:39:13,296 [duct.py] => Task 1, Epoch 2/5 => Loss 0.801
+2026-01-22 22:39:35,089 [duct.py] => Task 1, Epoch 3/5 => Loss 0.797
+2026-01-22 22:39:57,005 [duct.py] => Task 1, Epoch 4/5 => Loss 0.781
+2026-01-22 22:40:34,218 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:40:49,304 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:40:49,305 [duct.py] => Task 1, Epoch 5/5 => Loss 0.753, Train_accy 76.890, Test_accy 83.500
+2026-01-22 22:41:04,281 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:41:04,282 [duct.py] => Test accuracy of model after retraining: 83.5
+2026-01-22 22:41:19,800 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:41:19,801 [duct.py] => Test accuracy of model after classifier transport: 83.42
+2026-01-22 22:41:48,514 [trainer.py] => DUCT_VIT: {'total': 83.42, '00-64': 93.24, '65-129': 73.44, 'old': 93.24, 'new': 73.44}
+2026-01-22 22:41:48,514 [trainer.py] => NME: {'total': 1.74, '00-64': 2.25, '65-129': 1.22, 'old': 2.25, 'new': 1.22}
+2026-01-22 22:41:48,514 [trainer.py] => DUCT_VIT top1 curve: [92.49, 83.42]
+2026-01-22 22:41:48,514 [trainer.py] => NME top1 curve: [1.2, 1.74]
+2026-01-22 22:41:48,514 [trainer.py] => Average NME top1: 1.47
+2026-01-22 22:41:48,514 [trainer.py] => Average top1: 87.955
+2026-01-22 22:41:48,516 [trainer.py] => All params: 91426025
+2026-01-22 22:41:48,516 [trainer.py] => Trainable params: 91426025
+2026-01-22 22:41:48,517 [duct.py] => Learning on 130-195
+2026-01-22 22:47:49,923 [duct.py] => Task 2, Epoch 1/15 => Loss 4.067
+2026-01-22 22:48:22,910 [duct.py] => Task 2, Epoch 2/15 => Loss 2.439
+2026-01-22 22:48:56,181 [duct.py] => Task 2, Epoch 3/15 => Loss 0.536
+2026-01-22 22:49:29,399 [duct.py] => Task 2, Epoch 4/15 => Loss 0.356
+2026-01-22 22:50:32,616 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:50:57,378 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:50:57,379 [duct.py] => Task 2, Epoch 5/15 => Loss 0.321, Train_accy 92.780, Test_accy 79.800
+2026-01-22 22:51:29,923 [duct.py] => Task 2, Epoch 6/15 => Loss 0.280
+2026-01-22 22:52:05,093 [duct.py] => Task 2, Epoch 7/15 => Loss 0.244
+2026-01-22 22:52:36,507 [duct.py] => Task 2, Epoch 8/15 => Loss 0.235
+2026-01-22 22:53:08,284 [duct.py] => Task 2, Epoch 9/15 => Loss 0.202
+2026-01-22 22:54:09,624 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:54:34,810 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:54:34,811 [duct.py] => Task 2, Epoch 10/15 => Loss 0.193, Train_accy 95.010, Test_accy 81.700
+2026-01-22 22:55:07,923 [duct.py] => Task 2, Epoch 11/15 => Loss 0.173
+2026-01-22 22:55:40,420 [duct.py] => Task 2, Epoch 12/15 => Loss 0.155
+2026-01-22 22:56:14,118 [duct.py] => Task 2, Epoch 13/15 => Loss 0.165
+2026-01-22 22:56:46,220 [duct.py] => Task 2, Epoch 14/15 => Loss 0.156
+2026-01-22 22:57:48,814 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:58:14,917 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 22:58:14,918 [duct.py] => Task 2, Epoch 15/15 => Loss 0.147, Train_accy 96.000, Test_accy 81.320
+2026-01-22 23:09:17,079 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:09:17,080 [duct.py] => Test accuracy of model after backbone merge: 86.84
+2026-01-22 23:09:50,785 [duct.py] => Task 2, Epoch 1/5 => Loss 0.230
+2026-01-22 23:10:22,800 [duct.py] => Task 2, Epoch 2/5 => Loss 0.220
+2026-01-22 23:10:56,009 [duct.py] => Task 2, Epoch 3/5 => Loss 0.202
+2026-01-22 23:11:28,294 [duct.py] => Task 2, Epoch 4/5 => Loss 0.211
+2026-01-22 23:12:30,115 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:12:56,322 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:12:56,323 [duct.py] => Task 2, Epoch 5/5 => Loss 0.198, Train_accy 94.060, Test_accy 86.840
+2026-01-22 23:13:22,606 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:13:22,607 [duct.py] => Test accuracy of model after retraining: 86.84
+2026-01-22 23:13:49,418 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:13:49,419 [duct.py] => Test accuracy of model after classifier transport: 86.81
+2026-01-22 23:14:42,615 [trainer.py] => DUCT_VIT: {'total': 86.81, '00-64': 93.09, '65-129': 74.35, '130-194': 92.89, 'old': 83.8, 'new': 92.89}
+2026-01-22 23:14:42,616 [trainer.py] => NME: {'total': 1.37, '00-64': 0.83, '65-129': 2.06, '130-194': 1.22, 'old': 1.44, 'new': 1.22}
+2026-01-22 23:14:42,616 [trainer.py] => DUCT_VIT top1 curve: [92.49, 83.42, 86.81]
+2026-01-22 23:14:42,616 [trainer.py] => NME top1 curve: [1.2, 1.74, 1.37]
+2026-01-22 23:14:42,616 [trainer.py] => Average NME top1: 1.4366666666666668
+2026-01-22 23:14:42,616 [trainer.py] => Average top1: 87.57333333333334
+2026-01-22 23:14:42,617 [trainer.py] => All params: 91475945
+2026-01-22 23:14:42,618 [trainer.py] => Trainable params: 91475945
+2026-01-22 23:14:42,618 [duct.py] => Learning on 195-260
+2026-01-22 23:18:08,209 [duct.py] => Task 3, Epoch 1/15 => Loss 4.138
+2026-01-22 23:18:26,618 [duct.py] => Task 3, Epoch 2/15 => Loss 3.869
+2026-01-22 23:18:44,792 [duct.py] => Task 3, Epoch 3/15 => Loss 2.808
+2026-01-22 23:19:03,806 [duct.py] => Task 3, Epoch 4/15 => Loss 1.253
+2026-01-22 23:19:37,611 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:20:04,799 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:20:04,800 [duct.py] => Task 3, Epoch 5/15 => Loss 0.683, Train_accy 86.630, Test_accy 80.290
+2026-01-22 23:20:22,596 [duct.py] => Task 3, Epoch 6/15 => Loss 0.589
+2026-01-22 23:20:40,502 [duct.py] => Task 3, Epoch 7/15 => Loss 0.481
+2026-01-22 23:20:59,218 [duct.py] => Task 3, Epoch 8/15 => Loss 0.415
+2026-01-22 23:21:18,112 [duct.py] => Task 3, Epoch 9/15 => Loss 0.385
+2026-01-22 23:21:50,119 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:22:18,299 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:22:18,300 [duct.py] => Task 3, Epoch 10/15 => Loss 0.354, Train_accy 91.990, Test_accy 81.640
+2026-01-22 23:22:35,616 [duct.py] => Task 3, Epoch 11/15 => Loss 0.305
+2026-01-22 23:22:53,004 [duct.py] => Task 3, Epoch 12/15 => Loss 0.290
+2026-01-22 23:23:10,520 [duct.py] => Task 3, Epoch 13/15 => Loss 0.292
+2026-01-22 23:23:27,714 [duct.py] => Task 3, Epoch 14/15 => Loss 0.305
+2026-01-22 23:23:58,505 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:24:25,921 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:24:25,922 [duct.py] => Task 3, Epoch 15/15 => Loss 0.258, Train_accy 94.050, Test_accy 81.960
+2026-01-22 23:32:21,818 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:32:21,819 [duct.py] => Test accuracy of model after backbone merge: 86.9
+2026-01-22 23:32:41,001 [duct.py] => Task 3, Epoch 1/5 => Loss 0.362
+2026-01-22 23:32:59,991 [duct.py] => Task 3, Epoch 2/5 => Loss 0.347
+2026-01-22 23:33:17,913 [duct.py] => Task 3, Epoch 3/5 => Loss 0.352
+2026-01-22 23:33:36,878 [duct.py] => Task 3, Epoch 4/5 => Loss 0.324
+2026-01-22 23:34:08,979 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:34:36,882 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:34:36,883 [duct.py] => Task 3, Epoch 5/5 => Loss 0.304, Train_accy 88.810, Test_accy 87.240
+2026-01-22 23:35:04,019 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:35:04,019 [duct.py] => Test accuracy of model after retraining: 87.24
+2026-01-22 23:35:32,094 [base.py] => Hint: You are using _compute_accuracy_domain().
+2026-01-22 23:35:32,095 [duct.py] => Test accuracy of model after classifier transport: 87.26
+2026-01-22 23:36:29,002 [trainer.py] => DUCT_VIT: {'total': 87.26, '00-64': 93.54, '65-129': 75.57, '130-194': 92.66, '195-259': 87.11, 'old': 87.29, 'new': 87.11}
+2026-01-22 23:36:29,002 [trainer.py] => NME: {'total': 1.26, '00-64': 0.83, '65-129': 2.06, '130-194': 1.22, '195-259': 0.69, 'old': 1.37, 'new': 0.69}
+2026-01-22 23:36:29,002 [trainer.py] => DUCT_VIT top1 curve: [92.49, 83.42, 86.81, 87.26]
+2026-01-22 23:36:29,002 [trainer.py] => NME top1 curve: [1.2, 1.74, 1.37, 1.26]
+2026-01-22 23:36:29,003 [trainer.py] => Average NME top1: 1.3925
+2026-01-22 23:36:29,003 [trainer.py] => Average top1: 87.495
+2026-01-22 23:36:29,003 [trainer.py] => Accuracy Matrix:
+2026-01-22 23:36:29,003 [trainer.py] => [92.49  0.    0.    0.  ]
+2026-01-22 23:36:29,004 [trainer.py] => [93.24 73.44  0.    0.  ]
+2026-01-22 23:36:29,004 [trainer.py] => [93.09 74.35 92.89  0.  ]
+2026-01-22 23:36:29,004 [trainer.py] => [93.54 75.57 92.66 87.11]
+2026-01-22 23:36:29,004 [trainer.py] => Forgetting (after last task): 0.07666666666666799
+2026-01-22 23:36:29,005 [trainer.py] => NME Accuracy Matrix:
+2026-01-22 23:36:29,005 [trainer.py] => [1.2 0.  0.  0. ]
+2026-01-22 23:36:29,005 [trainer.py] => [2.25 1.22 0.   0.  ]
+2026-01-22 23:36:29,005 [trainer.py] => [0.83 2.06 1.22 0.  ]
+2026-01-22 23:36:29,005 [trainer.py] => [0.83 2.06 1.22 0.69]
+2026-01-22 23:36:29,006 [trainer.py] => NME Forgetting (after last task): 0.47333333333333333

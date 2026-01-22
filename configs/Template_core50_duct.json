@@ -1,9 +1,10 @@
 {
     "prefix": "Reproduce",
     "dataset": "core50",
+    "task_name": [2, 3, 4, 5, 6, 7, 0, 1],
+    "device": ["0"],
     "data_path": "$Your/Data/Path/Here$",
-
-    "task_name": [0, 1, 2, 3, 4, 5, 6, 7],
+    
     "total_sessions" : 8,
     "fixed_memory": true,
     "memory_size": 0,

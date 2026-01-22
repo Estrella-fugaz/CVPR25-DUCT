@@ -2,6 +2,7 @@
     "prefix": "Reproduce",
     "dataset": "domainnet",
     "task_name": ["clipart", "infograph", "painting", "quickdraw", "real", "sketch"],
+    "device": ["0"],
     "data_path": "$Your/Data/Path/Here$",
 
     "memory_size": 0,

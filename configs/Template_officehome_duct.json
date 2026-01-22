@@ -2,7 +2,8 @@
 {
     "prefix": "Reproduce",
     "dataset": "officehome",
-    "task_name": ["Art", "Clipart", "Product", "Real_World"],
+    "task_name": ["Product", "Clipart", "Real_World", "Art"],
+    "device": ["0"],
     "data_path": "$Your/Data/Path/Here$",
 
     "memory_size": 0,

@@ -1,7 +1,8 @@
 {
     "prefix": "Reproduce",
     "dataset": "cddb",
-    "task_name": ["san", "whichfaceisreal", "biggan", "wild", "gaugan"],
+    "task_name": ["gaugan", "biggan", "wild", "whichfaceisreal", "san"],
+    "device": ["0"],
     "data_path": "$Your/Data/Path/Here$",
 
     "multiclass": [0, 0, 0, 0, 0],
