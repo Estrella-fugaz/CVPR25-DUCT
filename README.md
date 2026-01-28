@@ -109,6 +109,14 @@ There are **4** datasets involved in the paper, CDDB, CORe50, DomainNet and Offi
     "data_path": "$Your/Dataset/Path/Here$"
     ```
 
+#### :warning: A note about DomainNet
+
+In the 'cleaned' version of DomainNet dataset, we identified a label mismatch in the `painting` domain:
+
+* **Issue:** the [painting_train.txt](https://csr.bu.edu/ftp/visda/2019/multi-source/domainnet/txt/painting_train.txt) file doesn't include the **t-shirt** category with label `327`, though it exists in the test set [painting_test.txt](https://csr.bu.edu/ftp/visda/2019/multi-source/domainnet/txt/painting_test.txt). This discrepancy could cause errors during evaluation.
+
+* **Fix:** In our experiments, we resolved this by moving the following line from the test file to the train file: `painting/t-shirt/painting_328_000001.jpg 327`.
+
 ## Running scripts
 
 ```
